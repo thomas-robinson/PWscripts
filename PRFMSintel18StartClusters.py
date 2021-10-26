@@ -155,10 +155,15 @@ for ei,entry in enumerate(cluster_hosts):
     print("")
     print(name+':','"'+cmd+'"')
 
-    out = subprocess.check_output(
-          cmd,
-          stderr=subprocess.STDOUT,
-          shell=True).decode(sys.stdout.encoding)
+    try:
+        out = subprocess.check_output(
+             cmd,
+             stderr=subprocess.STDOUT,
+             shell=True).decode(sys.stdout.encoding)
+    except subprocess.CalledProcessError as e:
+        print (e.output)
+        print (e.returncode)
+        sys.exit('The build was unsuccessful')
 
     print(out)
 
