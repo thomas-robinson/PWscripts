@@ -27,7 +27,8 @@ pw_url = "https://noaa.parallel.works"
 
 # specify the clusters to start and wait for activation
 #clusters = ["gcluster_noaa"]
-clusters = sys.argv[1].split(',')
+githubSha = sys.argv[1].split(',')
+clusters = ["am4_container"]
 
 print('\nStarting clusters:',clusters)
 
@@ -139,7 +140,9 @@ with open(hostsfile, 'w+') as f:
 print("\nRunning test ssh commands on the clusters...")
 import subprocess
 
+#testcmd = "/contrib/PR_fms.sh "+githubSha[0]
 testcmd = "/contrib/am4_test.sh"
+print("\n Test command = "+testcmd)
 
 for ei,entry in enumerate(cluster_hosts):
 
