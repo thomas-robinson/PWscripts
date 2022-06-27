@@ -55,6 +55,8 @@ for cluster_name in clusters:
 
     # check if resource exists and is on
     cluster=c.get_resource(cluster_name)
+    print("cluster name is "+cluster_name)
+    print(cluster)
     if cluster:
         if cluster['status'] == "on":
             # if resource not on, start it
