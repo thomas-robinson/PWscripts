@@ -29,7 +29,8 @@ pw_url = "https://noaa.parallel.works"
 #clusters = ["gcluster_noaa"]
 #githubSha = sys.argv[1].split(',')
 #clusters = ["AM4_intel18"]
-clusters = ["new_am4_container"]
+#clusters = ["new_am4_container"]
+clusters = ["am4_container_old"]
 print('\nStarting clusters:',clusters)
 
 # used to run test ssh commands after the clusters start
@@ -94,21 +95,15 @@ while True:
 
     for cluster in current_state:
 
-      print(cluster['name'],cluster['status'])
-      print(clusters)
-      print(cluster['name'] in clusters)
       if cluster['name'] in clusters and cluster['status'] == 'on':
-        print(cluster['name'],cluster['status'])
         if cluster['name'] not in started:
 
           state = cluster['state']
 
           if cluster['name'] not in laststate:
-              print(cluster['name'],state)
               laststate[cluster['name']] = state
 
           elif laststate[cluster['name']] != state:
-              print(cluster['name'],state)
               laststate[cluster['name']] = state
 
           # if state == 'ok':
@@ -120,11 +115,8 @@ while True:
             if cluster['state']['masterNode'] != None:
               ip = cluster['state']['masterNode']
               entry = ' '.join([cluster['name'], ip])
-              print(entry)
               cluster_hosts.append(entry)
               started.append(cluster['name'])
-    print(started,"\n",cluster['name'],cluster['state'],cluster['status'],"\n")
-    print(len(started),len(clusters),"\n")
     if len(started) == len(clusters):
       print('\nStarted all clusters... writing hosts file')
       break
