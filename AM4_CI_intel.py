@@ -27,7 +27,9 @@ pw_url = "https://noaa.parallel.works"
 
 # specify the clusters to start and wait for activation
 ncores = sys.argv[1].split(',')
-clusters = ["am4_container_old"]
+#clusters = ["am4_container_old"]
+clusters = ["ci_intel_am4"]
+
 print('\nStarting clusters:',clusters)
 
 # used to run test ssh commands after the clusters start
@@ -133,7 +135,7 @@ import subprocess
 
 
 testcmd = "/contrib/Josephine.Elumeze/home/am4_runs/intelcores/ci_budget_intel.csh "+ncores[0]
-testcmd = "echo "+ncores[0]
+#testcmd = "echo "+ncores[0]
 print("\n Test command = "+testcmd)
 
 for ei,entry in enumerate(cluster_hosts):

@@ -134,7 +134,7 @@ import subprocess
 
 testcmd = "/contrib/am4_ci.sh"
 testcmd = "/contrib/Josephine.Elumeze/home/am4_runs/amdcores/ci_budget_amd.csh "+ncores[0]
-testcmd = "echo "+ncores[0]
+#testcmd = "echo "+ncores[0]
 print("\n Test command = "+testcmd)
 
 for ei,entry in enumerate(cluster_hosts):
